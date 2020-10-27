@@ -1,0 +1,163 @@
+4. Creando un proyecto en Nodejs
+mpm - permite poder gestionar cualquier  paquenete de node que nosotros
+queramos, nos va ayudar especialmente a que las instalciones de los paquetes sean
+sumamante sencillas de hacer.
+
+https://platzi.com/tutoriales/1339-fundamentos-javascript/2024-packagejson/
+
+
+package.json
+De cierta forma, podemos considerar este package.json como un manifiesto de nuestro proyecto.
+
+Históricamente, Node ha trabajado con una herramienta para administrar paquetes llamada npm. Esta herramienta, que normalmente se instala junto con Node, tiene dos roles fundamentales:
+
+Manejar la publicación de un proyecto al registro público de npm (para que otros puedan descargarlo y utilizarlo como dependencia en sus propios proyectos).
+
+Administrar las dependencias de tu proyecto.
+Para esto, guarda un registro en un archivo llamado, justamente, package.json.
+
+Package.json -FERNANDO
+Es necesario para que podamos saber que paquetes son neceasrios para que mi aplicacion funcione.
+
+
+
+
+// 5.Exposicion del problema y necesidad del webpack
+-- codigo ordenado
+--Para realizar aplicaciones grandes
+ --- no deferia ser posible que se manipule funciones del dom con la consoloa
+ --MODULO .- es un archivo independiente que contiene ciertas funcionalidades que yo necesito en otro archivo
+ -Sirven evitar acceso a las variables desde el obejto windows -MODULO
+ src.- es la carpeta que que por defecto verificara el webpack
+ 
+//6. Instalacion y configuracion de Webpack por defecto
+//"build":"webpack" -- este atributo permite  webpack por defecto en mi proyecto, va a buscar la carpeta src los va
+a comprimir, unificar y listos para produccion
+main.js -- es la apliacion ensi con todo los archivos de js
+
+
+Export - Import
+La declaración export se utiliza al crear módulos de JavaScript para exportar funciones, objetos o 
+tipos de dato primitivos del módulo para que puedan ser utilizados por otros programas con la sentencia import.
+
+//7. Archivos de configuracion del webpackyrt55h
+webpack.config.js - configurar a nuestra manera el webpack
+archivo webpack.config.js -- archivo necesario -- archivo que ejecutara por defecto el webpack
+npm i -D html-loader html-webpack-plugin -- paquetes que permiten ejecuutar html en webpack
+
+require () // cargar archivos de otros paquetes
+
+//8. Webpack Dev Server
+
+webpack-dev-server es un paquete va a permirit copilar nuestro archivo una vez echo algo cambio en tiempo real
+servidor de desarrollo
+webpack-dev-server --open -- apenas se levante el servidor anre el index
+
+
+//9. Importando estilos de forma dinámica
+npm i -D css-loader -- permite leer el  arrhivo y a su vez inyectarlo y minimizarlo para colocarlo en el blondo
+style-loader --  entre los dos hacen el mismo trabajo
+npm i -D css-loader style-loader
+Podemos crear archivos css y requeririlos, cuando necesitemos trabajar con los mismos importandolos
+// ponerle el mismi nombre archivo scc y js si seran utilizado en conjunto
+
+//
+10. Creando un archivo de estilos de forma global en la aplicación
+Archivo css directa mente en el src para inidicar que es el archivo global de la aplicacion
+npm i -D mini-css-extract-plugin - paquete para poder crear archivos independiente de stilos
+npm i -D optimize-css-assets-webpack-plugin - permite opmitizar el codigo global de css y ponerlo en modo produccion
+ Todo estos archivos para su usu se los configura en el archivo webpack.config.js
+ //
+ 11.Manejo de imagenes
+ directorio asserts para las imagenes su nombre se debe a un estandar
+ npm i -D file-loader - este paquete permite importar imagenes en el wep pack
+//
+12.Webpack- Production Mode
+Configuando reglas de prodccion con un archivo nuevo(webpack.prod.js)
+en el package.json cambiamos el nombre en la propiedad buil:"build": "webpack --config webpack.prod.js"
+para que ejecute el webpack de produccion
+ comando para ejecutar el archivo webpack en modo desarrollo -- npm run build:dev
+ cambio en el nombre automatico del archivo javascript para evitar el navegador
+ almacene el cache el mismo archivo siempre output:{
+        filename:'main.[contentHash].js' - CSS 
+//
+13.Instalación y configuración de Babel
+babel permite tranforma nuestro codigo emmacript ya se la vesion 6 7 0 superior, a codigo compatible con navegadores antiguo o que no aceptan aun nuevas caracteristicas
+8.WebpackInicial>npm install i -D babel-loader @babel/core      
+https://babeljs.io/setup#installation - instalacion de paquetes necesarios de babel
+.babelrc punto porque es un archivo oculto
+--
+Intalar el paquete npm install --save-dev @babel/preset-env
+este paquete sirva hacer compatible nuestro codigo.
+Lo configuramos en nuestro archivo .babelrc para doderlo utilizarlo
+{
+    "presets": ["@babel/preset-env","minify"]
+}
+
+----
+https://babeljs.io/docs/en/babel-preset-minify
+npm install babel-preset-minify --save-dev -- para ofuscar el codigo
+{
+  "presets": ["minify"]
+}
+-----
+https://github.com/webpack-contrib/babel-minify-webpack-plugin
+
+
+npm install babel-minify-webpack-plugin --save-dev -- puglin para minimizar el codigo
+webpack.config.js
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+module.exports = {
+ 
+  plugins: [
+    new MinifyPlugin()
+  ]
+}
+//14.Limpiando la carpeta dist
+https://webpack.js.org/guides/output-management/#cleaning-up-the-dist-folder
+npm install --save-dev clean-webpack-plugin - plugin necesario
+
+configuracion del webpack
+ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+plugins: [
+     new CleanWebpackPlugin(),
+ ]
+
+////////////////////////////////////
+9. Despliegue a Github y Github pages
+1//
+2//
+3. ¿Por qué debo de saber Git
+comando git checkout -- . - regresar mi codigo al ultimo cambio
+no es necesario subir la carperta node_nodule, ni dist
+-- ya que en el paquetjason con el comando npm install
+instala los paquetes que necesitamos para su funcionamiennto
+el archivo .gitignore sirve para decirle a githud que archivos ignorar
+--------------
+comando git init inicializar el respositorio local
+comando git add . - preparar los archvivos para la captura
+comando git commit -m "Nombre de la foto del proyecto" --- para capturar el codigo en ese instante
+------agregar el repositorio en la nueve----------
+git remote add origin https://github.com/spicoc1/Webpack.git --- agregar el url del repositorio
+git push - origin master --- agregar archivos en la nube en la rama master
+
+//6. page git
+renombrar el dis a docs, para asi evitar que git lo ignore
+ir a git en sentting buscar crear el repositorio con el docs
+despues subir la carpeta docs al repositorio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
